@@ -4,17 +4,27 @@
   "description": "practice project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "concurrently \"npm:dev:server\" \"npm:dev:client\" ",
+    "dev:server": "npm run dev:client:build && env-cmd nodemon index.js",
+    "dev:server:only": "env-cmd nodemon index.js",
+    "dev:client": "cd client && npm start",
+    "dev:client:build": "cd client && npm run build",
+    "dev:migrate:up": "env-cmd sequelize db:migrate --env development --config ./configs/sequelize.js",
+    "dev:migrate:undo": "env-cmd sequelize  db:migrate:undo --env development --config ./configs/sequelize.js",
+    "dev:migrate:destroy": "env-cmd sequelize  db:migrate:undo:all --env development --config ./configs/sequelize.js"
   },
   "author": "Kalan Jasny",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "env-cmd": "^10.1.0",
     "express": "^4.19.2",
     "mysql2": "^3.9.7",
     "sequelize": "^6.37.3"
   },
   "devDependencies": {
-    "nodemon": "^3.1.0"
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.1.0",
+    "sequelize-cli": "^6.6.2"
   }
 }
