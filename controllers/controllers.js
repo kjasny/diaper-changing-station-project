@@ -1,4 +1,4 @@
-const {getAllChangingTableLocations} = require("/models/models")
+const { getAllChangingTables, getOneChangingTable } = require("/models/models")
 
 const getAllChangingTablesController = async (request, response) => {
     const allChangingTables = await getAllChangingTables()
@@ -6,4 +6,11 @@ const getAllChangingTablesController = async (request, response) => {
     return response.send(allChangingTables)
 }
 
-module.exports = {getAllChangingTablesController}
+const getOneChangingTableController = async (request, response) => {
+    const { id } = request.params
+    const oneChangingTable = await getOneChangingTable(parseInt(id))
+
+    return response.send(oneChangingTable)
+}
+
+module.exports = {getAllChangingTablesController, getOneChangingTableController}

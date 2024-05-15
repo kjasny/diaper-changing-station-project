@@ -6,4 +6,12 @@ const getAllChangingTables = async () => {
     return allChangingTables
 }
 
-module.exports = {getAllChangingTables}
+const getOneChangingTable = async (id) => {
+    const oneChangingTable = models.ChangingTablesModel.findOne({
+        where: {id}
+    })
+    return oneChangingTable
+
+}
+
+module.exports = { getAllChangingTables, getOneChangingTable }
