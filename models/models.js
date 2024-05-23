@@ -11,7 +11,33 @@ const getOneChangingTable = async (id) => {
         where: {id}
     })
     return oneChangingTable
-
 }
 
-module.exports = { getAllChangingTables, getOneChangingTable }
+const getMensBathroomChangingTables = async () => {
+    const mensBathroomChangingTables = models.ChangingTablesModel.findAll({
+        where: {
+            [Op.and]: [{ womensBathroom: false }, { mensBathroom: true }],
+        },
+    })
+    return mensBathroomChangingTables
+}
+
+const getWomensBathroomChangingTables = async () => {
+    const womensBathroomChangingTables = models.ChangingTablesModel.findAll({
+        where: {
+            [Op.and]: [{ womensBathroom: true }, { mensBathroom: false }],
+        },
+    })
+    return womensBathroomChangingTables
+}
+
+const getBothBathroomChangingTables = async () => {
+    const bothBathroomChangingTables = models.ChangingTablesModel.findAll({
+        where: {
+            [Op.and]: [{ womensBathroom: true }, { mensBathroom: true }],
+        },
+    })
+    return bothBathroomChangingTables
+}
+
+module.exports = { getAllChangingTables, getOneChangingTable, getMensBathroomChangingTables, getWomensBathroomChangingTables, getBothBathroomChangingTables }

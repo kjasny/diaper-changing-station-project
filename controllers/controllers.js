@@ -1,4 +1,9 @@
-const { getAllChangingTables, getOneChangingTable } = require("/models/models")
+const { getAllChangingTables, 
+    getOneChangingTable, 
+    getBothBathroomChangingTables, 
+    getMensBathroomChangingTables, 
+    getWomensBathroomChangingTables 
+} = require("/models/models")
 
 const getAllChangingTablesController = async (request, response) => {
     const allChangingTables = await getAllChangingTables()
@@ -13,4 +18,27 @@ const getOneChangingTableController = async (request, response) => {
     return response.send(oneChangingTable)
 }
 
-module.exports = {getAllChangingTablesController, getOneChangingTableController}
+const getChangingTablesInMenBathroomsController = async (request, response) => {
+    const mensBathroomChangingTables = await getMensBathroomChangingTables()
+
+    return response.send(mensBathroomChangingTables)
+}
+
+const getChangingTablesInWomenBathroomsController = async (request, response) => {
+    const womensBathroomChangingTables = await getWomensBathroomChangingTables()
+
+    return response.send(womensBathroomChangingTables)
+}
+
+const getChangingTablesInBothBathroomsController = async (request, response) => {
+    const bothBathroomChangingTables = await getBothBathroomChangingTables()
+
+    return response.send(bothBathroomChangingTables)
+}
+
+module.exports = {getAllChangingTablesController, 
+    getOneChangingTableController, 
+    getChangingTablesInBothBathroomsController, 
+    getChangingTablesInMenBathroomsController, 
+    getChangingTablesInWomenBathroomsController
+}
