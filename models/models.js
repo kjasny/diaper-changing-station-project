@@ -1,20 +1,20 @@
 const models = require(".")
 
 const getAllChangingTables = async () => {
-    const allChangingTables = await models.ChangingTablesModel.findAll()
+    const allChangingTables = await models.diaperChangingTablesModel.findAll()
 
     return allChangingTables
 }
 
 const getOneChangingTable = async (id) => {
-    const oneChangingTable = models.ChangingTablesModel.findOne({
+    const oneChangingTable = models.diaperChangingTablesModel.findOne({
         where: {id}
     })
     return oneChangingTable
 }
 
 const getMensBathroomChangingTables = async () => {
-    const mensBathroomChangingTables = models.ChangingTablesModel.findAll({
+    const mensBathroomChangingTables = models.diaperChangingTablesModel.findAll({
         where: {
             [Op.and]: [{ womensBathroom: false }, { mensBathroom: true }],
         },
@@ -23,7 +23,7 @@ const getMensBathroomChangingTables = async () => {
 }
 
 const getWomensBathroomChangingTables = async () => {
-    const womensBathroomChangingTables = models.ChangingTablesModel.findAll({
+    const womensBathroomChangingTables = models.diaperChangingTablesModel.findAll({
         where: {
             [Op.and]: [{ womensBathroom: true }, { mensBathroom: false }],
         },
@@ -32,7 +32,7 @@ const getWomensBathroomChangingTables = async () => {
 }
 
 const getBothBathroomChangingTables = async () => {
-    const bothBathroomChangingTables = models.ChangingTablesModel.findAll({
+    const bothBathroomChangingTables = models.diaperChangingTablesModel.findAll({
         where: {
             [Op.and]: [{ womensBathroom: true }, { mensBathroom: true }],
         },

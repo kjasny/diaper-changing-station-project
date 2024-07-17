@@ -5,10 +5,10 @@ const config = configs[environment]
 const {
   database, username, password, host, dialect
 } = config
-const {changingTablesTemplate} = require("./changingTablesTemplate")
+const {diaperChangingTablesTemplate} = require("./diaperChangingTablesTemplate")
 
 const connection = new Sequelize(database, username, password,  {host, dialect})
 
-const ChangingTablesModel = changingTablesTemplate(connection, Sequelize)
+const diaperChangingTablesModel = diaperChangingTablesTemplate(connection, Sequelize)
 
-module.exports = { ChangingTablesModel }
+module.exports = { diaperChangingTablesModel }
